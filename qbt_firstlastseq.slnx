@@ -1,0 +1,9 @@
+<Solution>
+  <Configurations>
+    <Platform Name="Any CPU" />
+    <Platform Name="x64" />
+  </Configurations>
+  <Project Path="qbt_firstlastseq/qbt_firstlastseq.csproj" Id="ec0c36b4-751c-404d-88c5-4dc6bb3370a2">
+    <Platform Solution="*|x64" Project="x64" />
+  </Project>
+</Solution>
