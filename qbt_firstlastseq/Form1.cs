@@ -11,23 +11,33 @@ namespace qbt_firstlastseq
     {
         private readonly string _torrentHash;
         private readonly string _apiBase;
+        private readonly bool _hidden;
         private TextBox txtLog;
 
-        public Form1(string torrentHash, string port)
+        public Form1(string torrentHash, string port, bool silentmode)
         {
             _torrentHash = torrentHash;
+            _hidden = silentmode;
             _apiBase = $"http://127.0.0.1:{port}/api/v2"; // Dynamically inject the port
             InitializeComponent();
-            SetupCustomTextBox();
-        }
 
-        private void SetupCustomTextBox()
-        {
+            this.Opacity = 0; // Hide
             this.Icon = qbt_firstlastseq.Properties.Resources.qbittorrent;
             this.Text = "qbt_firstlastseq  v" + System.Windows.Forms.Application.ProductVersion + "   -   qBittorrent: Set FirstLast + Sequential";
             this.Size = new System.Drawing.Size(1020, 400);
             this.StartPosition = FormStartPosition.CenterScreen;
 
+            if (!_hidden)
+            {
+                // Show
+                this.Opacity = 1;
+            }
+
+            SetupCustomTextBox();
+        }
+
+        private void SetupCustomTextBox()
+        {
             txtLog = new TextBox
             {
                 BorderStyle = BorderStyle.None,
@@ -61,6 +71,9 @@ namespace qbt_firstlastseq
 
             if (string.IsNullOrWhiteSpace(_torrentHash))
             {
+                // Error: Show Form
+                this.Opacity = 1;
+                // ---
                 Log("⚠️ Error: No torrent hash argument (%K) passed to this program.");
                 Log("Keeping window open for review.");
                 return;
@@ -74,11 +87,20 @@ namespace qbt_firstlastseq
             if (success)
             {
                 Log("🏁 All operations completed successfully! Closing window in 5 seconds...");
-                await Task.Delay(5000); // Small Exit delay so you see the final success text.
+
+                if (!_hidden)
+                {
+                    await Task.Delay(5000); // Small Exit delay so you see the final success text.
+                }
+
+                // Bye
                 Application.Exit();
             }
             else
             {
+                // Error: Show Form
+                this.Opacity = 1;
+                // ---
                 Log("❌ Task Failed.");
                 Log("Keeping window open for review.");
             }
@@ -113,6 +135,9 @@ namespace qbt_firstlastseq
                     }
                     catch (Exception ex)
                     {
+                        // Error: Show Form
+                        this.Opacity = 1;
+                        // ---
                         Log($"⚠️ Connection error: {ex.Message}");
                     }
 
@@ -121,6 +146,9 @@ namespace qbt_firstlastseq
 
                 if (torrent == null)
                 {
+                    // Error: Show Form
+                    this.Opacity = 1;
+                    // ---
                     Log("❌ Failure: Could not reach qBittorrent or torrent data is missing after 5 retries.");
                     return false;
                 }
@@ -153,6 +181,9 @@ namespace qbt_firstlastseq
                 }
                 catch (Exception ex)
                 {
+                    // Error: Show Form
+                    this.Opacity = 1;
+                    // ---
                     Log($"❌ Exception running API commands: {ex.Message}");
                     return false;
                 }

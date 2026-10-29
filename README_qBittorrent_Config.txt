@@ -1,6 +1,6 @@
-
+======================
 Configure qBittorrent:
-
+======================
 ----------
 * STEP 1 *
 ----------
@@ -37,13 +37,35 @@ _Now insert the following command:
 
 (This will use the default port: 8080)
 
-Or you can add a custom port:
 
-"c:\Program Files\qBittorrent\qbt_firstlastseq.exe" "%K" "9095" 
+============
+* OPTIONAL * 
+============
 
-===========================================
- Code by Google AI, Prompt/Adjustments: Me 
-===========================================
+----
+PORT
+----
+
+You can add a custom port using "-pX"  (X=Portnumber)
+
+"c:\Program Files\qBittorrent\qbt_firstlastseq.exe" "%K" "-p9095" 
+
+----
+HIDE
+----
+
+For hidden/silent mode (only show on error) add "-hide"
+
+"c:\Program Files\qBittorrent\qbt_firstlastseq.exe" "%K" "-p9095" "-hide"
+
+Or when using the default port:
+
+"c:\Program Files\qBittorrent\qbt_firstlastseq.exe" "%K" "-hide" 
+
+
+==================================================
+Initial code by Google AI, Prompt/Adjustments: C4T 
+==================================================
 
 
 
