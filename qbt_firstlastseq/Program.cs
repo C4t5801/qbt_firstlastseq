@@ -31,8 +31,6 @@ namespace qbt_firstlastseq
                     {
                         // Port
                         portArg = arg2.Remove(0, 2);
-                        Console.Write($"port: {portArg}");
-
                     }
                     else if (arg2 == "-hide")
                     {
@@ -56,7 +54,6 @@ namespace qbt_firstlastseq
                     {
                         // Port
                         portArg = arg3.Remove(0, 2);
-
                     }
                     else if (arg3 == "-hide")
                     {
