@@ -24,7 +24,7 @@ namespace qbt_firstlastseq
             if (args.Length > 1)
             {
                 // Check 2nd argument (if given).
-                string arg2 = (args[1].Trim()).ToLower();
+                string arg2 = args[1].Trim().ToLower();
                 if (!string.IsNullOrWhiteSpace(arg2))
                 {
                     if (arg2.StartsWith("-p"))
@@ -47,7 +47,7 @@ namespace qbt_firstlastseq
             if (args.Length > 2)
             {
                 // Check  3rd argument (if given).
-                string arg3 = (args[2].Trim()).ToLower();
+                string arg3 = args[2].Trim().ToLower();
                 if (!string.IsNullOrWhiteSpace(arg3))
                 {
                     if (arg3.StartsWith("-p"))
